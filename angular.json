@@ -23,9 +23,22 @@
             "aot": true,
             "assets": [
               "apps/tourhunter-test-map/src/favicon.ico",
-              "apps/tourhunter-test-map/src/assets"
+              "apps/tourhunter-test-map/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets/"
+              }
             ],
-            "styles": ["apps/tourhunter-test-map/src/styles.scss"],
+            "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "apps/tourhunter-test-map/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -124,6 +137,192 @@
               "!apps/tourhunter-test-map-e2e/**"
             ]
           }
+        }
+      }
+    },
+    "api-firebase-service": {
+      "projectType": "library",
+      "root": "libs/api-firebase-service",
+      "sourceRoot": "libs/api-firebase-service/src",
+      "prefix": "tourhunter",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-firebase-service/tsconfig.lib.json",
+              "libs/api-firebase-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api-firebase-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-firebase-service/jest.config.js",
+            "tsConfig": "libs/api-firebase-service/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/api-firebase-service/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "map": {
+      "projectType": "library",
+      "root": "libs/map",
+      "sourceRoot": "libs/map/src",
+      "prefix": "tourhunter",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/map/tsconfig.lib.json",
+              "libs/map/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/map/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/map/jest.config.js",
+            "tsConfig": "libs/map/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/map/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "tourhunter",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "ng-zorro": {
+      "projectType": "library",
+      "root": "libs/ng-zorro",
+      "sourceRoot": "libs/ng-zorro/src",
+      "prefix": "tourhunter",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ng-zorro/tsconfig.lib.json",
+              "libs/ng-zorro/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ng-zorro/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng-zorro/jest.config.js",
+            "tsConfig": "libs/ng-zorro/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/ng-zorro/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "api-interface": {
+      "root": "libs/api-interface",
+      "sourceRoot": "libs/api-interface/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/api-interface/tsconfig.lib.json",
+              "libs/api-interface/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/api-interface/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-interface/jest.config.js",
+            "tsConfig": "libs/api-interface/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "data-utils": {
+      "projectType": "library",
+      "root": "libs/data-utils",
+      "sourceRoot": "libs/data-utils/src",
+      "prefix": "tourhunter",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-utils/tsconfig.lib.json",
+              "libs/data-utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-utils/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-utils/jest.config.js",
+            "tsConfig": "libs/data-utils/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/data-utils/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

@@ -15,7 +15,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tourhunter/api-firebase-service": [
+        "libs/api-firebase-service/src/index.ts"
+      ],
+      "@tourhunter/map": ["libs/map/src/index.ts"],
+      "@tourhunter/ui": ["libs/ui/src/index.ts"],
+      "@tourhunter/ng-zorro": ["libs/ng-zorro/src/index.ts"],
+      "@tourhunter/api-interface": ["libs/api-interface/src/index.ts"],
+      "@tourhunter/data-utils": ["libs/data-utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

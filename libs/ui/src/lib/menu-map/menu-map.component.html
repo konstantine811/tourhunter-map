@@ -1,0 +1,154 @@
+<div class="menu-map">
+  <i
+    nz-icon
+    nzType="diff"
+    nzTheme="fill"
+    class="map-menu-icon"
+    nzTooltipTitle="Create"
+    nzTooltipPlacement="topCenter"
+    nz-tooltip
+    (click)="emitShowForm(true)"
+  ></i>
+  <nz-card
+    [@fadeInScale]
+    *ngIf="showForm"
+    class="card-menu-form"
+    nzTitle="Create Point"
+    [nzExtra]="extraTemplate"
+  >
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <!-- Geozone Name -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input geozone name!">
+          <nz-space class="form-item__wrap">
+            <nz-space-item>
+              <nz-input-group *ngIf="!toggleGeozone">
+                <input
+                  type="text"
+                  nz-input
+                  formControlName="geozoneName"
+                  placeholder="Country"
+                />
+              </nz-input-group>
+              <nz-select
+                *ngIf="toggleGeozone"
+                nzShowSearch
+                nzAllowClear
+                formControlName="geozoneName"
+                class="menu-select"
+                nzPlaceHolder="Country"
+                (ngModelChange)="geozoneSelect($event)"
+              >
+                <nz-option
+                  *ngFor="let value of geozoneValue"
+                  [nzValue]="value.title"
+                  [nzLabel]="value.title"
+                ></nz-option>
+              </nz-select>
+            </nz-space-item>
+            <nz-space-item>
+              <nz-switch
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="toggleGeozone"
+                (ngModelChange)="geozoneSwitchChange($event)"
+                nzTooltipTitle="Select from current Country"
+                nzTooltipPlacement="topCenter"
+                nz-tooltip
+              ></nz-switch>
+            </nz-space-item>
+          </nz-space>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- MASSIVE NAME -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input massive name!">
+          <nz-space>
+            <nz-space-item>
+              <nz-input-group *ngIf="!toggleMassive || !massiveValue">
+                <input
+                  type="input"
+                  nz-input
+                  formControlName="massiveName"
+                  placeholder="City"
+                />
+              </nz-input-group>
+              <nz-select
+                *ngIf="toggleMassive && massiveValue"
+                nzShowSearch
+                nzAllowClear
+                formControlName="massiveName"
+                class="menu-select"
+                nzPlaceHolder="City"
+              >
+                <nz-option
+                  *ngFor="let value of massiveValue"
+                  [nzValue]="value.title"
+                  [nzLabel]="value.title"
+                ></nz-option>
+              </nz-select>
+            </nz-space-item>
+            <nz-space-item>
+              <nz-switch
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="toggleMassive"
+                [nzDisabled]="!massiveValue"
+                nzTooltipTitle="Select from current Massive"
+                nzTooltipPlacement="topCenter"
+                nz-tooltip
+              ></nz-switch>
+            </nz-space-item>
+          </nz-space>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Point name -->
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="errorTpl">
+          <nz-input-group>
+            <input
+              type="input"
+              nz-input
+              formControlName="pointName"
+              placeholder="Place"
+            />
+          </nz-input-group>
+          <ng-template #errorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Please input point name!
+            </ng-container>
+            <ng-container *ngIf="control.hasError('notUnique')">
+              Point name should be an unique
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <p [ngClass]="{ 'error-txt-flicker': !ifPointed }">
+          Choose and click a point on the map
+        </p>
+      </nz-form-item>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Create
+      </button>
+    </form>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <i
+      (click)="emitShowForm(false)"
+      class="map-menu-close"
+      nz-icon
+      nzType="close-circle"
+      nzTheme="outline"
+    ></i>
+  </ng-template>
+</div>

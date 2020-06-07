@@ -1,0 +1,39 @@
+<div class="site-page-header-ghost-wrapper">
+  <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>Created by</nz-page-header-title>
+    <nz-page-header-subtitle
+      ><button nz-button [nzType]="'primary'" (click)="showModal()">
+        <span>Constantien Abramov</span>
+      </button>
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleOk()"
+        nzWidth="calc(100% - 200px)"
+        [nzBodyStyle]="{
+          height: 'calc(100vh - 200px)'
+        }"
+      >
+        <iframe
+          class="header-iframe"
+          src="https://www.youtube.com/embed/03n8GLPpef4"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <div *nzModalFooter></div></nz-modal
+    ></nz-page-header-subtitle>
+    <nz-page-header-extra>
+      <a
+        href="https://drive.google.com/file/d/1XM6zXmN6t-tDuqyYNGidmtXPqpWqP2JF/view?usp=sharing"
+        target="_blank"
+        ><i nz-icon nzType="idcard" nzTheme="outline"></i> cv.en</a
+      >
+      <a
+        href="https://drive.google.com/file/d/1GtjPZPJftMfRy_lfcbj8gOrkyfFAQHzI/view?usp=sharing"
+        target="_blank"
+        ><i nz-icon nzType="idcard" nzTheme="outline"></i> cv.ru</a
+      >
+    </nz-page-header-extra>
+  </nz-page-header>
+</div>

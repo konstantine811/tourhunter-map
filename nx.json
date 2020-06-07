@@ -1,5 +1,5 @@
 {
-  "npmScope": "tourhunter-test-map",
+  "npmScope": "tourhunter",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -24,7 +24,25 @@
     },
     "tourhunter-test-map-e2e": {
       "tags": [],
-      "implicitDependencies": ["tourhunter-test-map"]
+      "implicitDependencies": ["tourhunter"]
+    },
+    "api-firebase-service": {
+      "tags": []
+    },
+    "map": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "ng-zorro": {
+      "tags": []
+    },
+    "api-interface": {
+      "tags": []
+    },
+    "data-utils": {
+      "tags": []
     }
   }
 }
